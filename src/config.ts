@@ -3,7 +3,7 @@ import type { ApiConfig } from "./shared";
 export const API_CONFIG: ApiConfig = {
   name: "pii-detector",
   slug: "pii-detector",
-  description: "Detect PII in text: emails, phones, SSNs, credit cards, IPs, addresses. Regex-based.",
+  description: "Detect PII in text -- emails, phones, SSNs, credit cards, IPs, addresses. Risk scoring, redaction support.",
   version: "1.0.0",
   routes: [
     {
@@ -13,7 +13,15 @@ export const API_CONFIG: ApiConfig = {
       description: "Detect personally identifiable information (PII) in text",
       toolName: "compliance_detect_pii",
       toolDescription:
-        "Use this when you need to scan text for personally identifiable information (PII). Detects emails, phone numbers (international), credit card numbers (with Luhn validation), US SSNs, dates of birth, IP addresses, postal addresses (US/UK/FR), passport numbers, and URLs with tokens. Returns each match with type, redacted value, position, and confidence. Includes overall risk level (low/medium/high/critical). Do NOT use for email validation — use email_verify_address. Do NOT use for GDPR compliance — use compliance_scan_gdpr.",
+        `Use this when you need to scan text for personally identifiable information (PII). Returns detected PII entities with redaction in JSON.
+
+Returns: 1. matches array with type, value (redacted), position, confidence 2. riskLevel (low/medium/high/critical) 3. totalMatches count 4. PII types detected: email, phone, creditCard (Luhn validated), ssn, dateOfBirth, ipAddress, postalAddress, passportNumber, urlWithToken.
+
+Example output: {"text":"Contact john@example.com or 555-123-4567","matches":[{"type":"email","value":"j***@example.com","position":[8,24],"confidence":0.99},{"type":"phone","value":"555-***-4567","position":[28,40],"confidence":0.95}],"riskLevel":"high","totalMatches":2}
+
+Use this BEFORE publishing content, FOR compliance auditing, data leak prevention, log sanitization, and GDPR data subject access requests.
+
+Do NOT use for email validation -- use email_verify_address instead. Do NOT use for website GDPR compliance -- use compliance_scan_gdpr instead. Do NOT use for phone validation -- use phone_validate_number instead.`,
       inputSchema: {
         type: "object",
         properties: {
