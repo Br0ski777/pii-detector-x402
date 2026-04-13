@@ -32,6 +32,51 @@ Do NOT use for email validation -- use email_verify_address instead. Do NOT use 
         },
         required: ["text"],
       },
+      outputSchema: {
+          "type": "object",
+          "properties": {
+            "found": {
+              "type": "boolean",
+              "description": "Whether PII was detected"
+            },
+            "count": {
+              "type": "number",
+              "description": "Number of PII items found"
+            },
+            "categories": {
+              "type": "object",
+              "description": "PII by category (email, phone, SSN, etc.)"
+            },
+            "redacted": {
+              "type": "string",
+              "description": "Text with PII redacted"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  },
+                  "start": {
+                    "type": "number"
+                  },
+                  "end": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "found",
+            "count"
+          ]
+        },
     },
   ],
 };
