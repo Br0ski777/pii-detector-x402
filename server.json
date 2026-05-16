@@ -12,7 +12,7 @@
   "remotes": [
     {
       "type": "sse",
-      "url": "https://pii-detector-x402-production.up.railway.app/mcp"
+      "url": "https://pii-detector.api.klymax402.com/mcp"
     }
   ]
 }
