@@ -9,7 +9,7 @@ export const API_CONFIG: ApiConfig = {
     {
       method: "POST",
       path: "/api/detect",
-      price: "$0.005",
+      price: "$0.012",
       description: "Detect personally identifiable information (PII) in text",
       toolName: "compliance_detect_pii",
       toolDescription:
