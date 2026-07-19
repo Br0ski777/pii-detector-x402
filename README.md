@@ -37,7 +37,7 @@ Any x402-aware client ([`@x402/fetch`](https://www.npmjs.com/package/@x402/fetch
 
 | Tool | Method | Path | Price | Description |
 |---|---|---|---|---|
-| `compliance_detect_pii` | POST | `/api/detect` | $0.005 | Detect personally identifiable information (PII) in text |
+| `compliance_detect_pii` | POST | `/api/detect` | $0.012 | Detect personally identifiable information (PII) in text |
 
 ### `compliance_detect_pii`
 
